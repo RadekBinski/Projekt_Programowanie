@@ -19,13 +19,16 @@ public class Statystyka {
         ArrayList<Punkt> szereg = a.getDane();
         ArrayList<Integer> dane = new ArrayList<>();
 
-        for (int i = 0; i > szereg.size(); i++){
+        for (int i = 0; i < szereg.size(); i++){
             dane.set(i, szereg.get(i).getX());
         }
-
+        
         Collections.sort(dane);
+//         int i=100;
+//         Double d= new Double(i);//first way.
+//         Double d2=Double.valueOf(i);//second way.
         if (dane.size() % 2 == 0) {
-            mediana = ((double) dane.get(dane.size() / 2)) + (double) dane.get(dane.size() / 2 - 1) / 2;
+            mediana = ((double) dane.get(dane.size() / 2)) + (double) dane.get(dane.size() / (2 - 1) / 2;
         } else {
             mediana = (double) dane.get(dane.size() / 2 - 1);
         }
