@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Start {
@@ -10,11 +10,12 @@ public class Start {
                 "Wybierz co chcesz zrobić:\n" +
                 "1. Stwórz szereg wybranych punktów.\n" +
                 "2. Stwórz szereg losowych punktów.\n" +
-                "3. Stwórz szereg losowych punktów w wybranym zakresie\n");
+                "3. Stwórz szereg losowych punktów w wybranym zakresie\n" +
+                "4. Otwórz plik z danymi");
 
         int wyborRodzajuSzeregu = myObj.nextInt();
 
-        if (wyborRodzajuSzeregu < 1 || wyborRodzajuSzeregu > 3){
+        if (wyborRodzajuSzeregu < 1 || wyborRodzajuSzeregu > 4){
             System.out.println("Podano nieprawidłowy numer akcji.");
             System.exit(0);
         }
@@ -59,40 +60,56 @@ public class Start {
                         "Oto wartości tych punktów:");
                 nowySzereg.wypiszWartosciSzeregu();
                 break;
+            case 4:
+                //odczyt danych z pliku
         }
+
         System.out.println("\nNazwij utworzony szereg (jednym wyrazem):");
         nowySzereg.setNazwaSzeregu(myObj.next()); //napraw żeby nextLine() działało
         System.out.println(nowySzereg.getNazwaSzeregu());
 
+        System.out.println("Co chciałbyś zrobić ze swoim szeregiem?\n" +
+                "1. Mediana.\n" +
+                "2. Dominanta.\n" +
+                "3. Srednia.\n" +
+                "4. Odchylenie standardowe.\n" +
+                "5. Wszystko z powyższych.\n");
 
+        int wyborAkcji = myObj.nextInt();
 
-        double mediana = new Statystyka().mediana(nowySzereg);
-        System.out.println(mediana);
+        if (wyborAkcji < 1 || wyborAkcji > 5){
+            System.out.println("Podano nieprawidłowy numer akcji.");
+            System.exit(0);
+        }
 
-//        System.out.println("Co chciałbyś zrobić ze swoim szeregiem?\n" +
-//                "1. Mediana.\n" +
-//                "2. Dominanta.\n" +
-//                "3. Srednia.\n" +
-//                "4. Odchylenie standardowe.\n" +
-//                "5. Zapis na dysk.\n");
-//
-//        int wyborAkcji = myObj.nextInt();
-//        switch (wyborAkcji){
-//            case 1:
-//                //Wypisz medianę szeregu
-//                break;
-//            case 2:
-//                //Wypisz dominantę szeregu
-//                break;
-//            case 3:
-//                //Wypisz średnią szeregu
-//                break;
-//            case 4:
-//                //Wypisz odchylenie standardowe
-//                break;
-//            case 5:
-//                //Zapisz na dysk
-//                break;
-//        }
+        switch (wyborAkcji){
+            case 1:
+                System.out.println(Statystyka.mediana(nowySzereg));
+                break;
+            case 2:
+                System.out.println(Statystyka.dominanta(nowySzereg));
+                break;
+            case 3:
+                System.out.println(Statystyka.srednia(nowySzereg));
+                break;
+            case 4:
+                System.out.println(Statystyka.odchylenie(nowySzereg));
+                break;
+            case 5:
+                System.out.println("[średnia, odchylenie, mediana, dominanta]");
+                System.out.println(Arrays.toString(Statystyka.opisDanych(nowySzereg)));
+                break;
+        }
+
+        System.out.println("Czy chcesz zapisać swój szereg? [Y/N]");
+        String decyzja = myObj.next();
+        if(decyzja.toUpperCase().equals("Y")){
+            //zapis na dysk
+        } else if(decyzja.toUpperCase().equals("N")) {
+            System.exit(0);
+        } else {
+            System.out.println("Podano nieprawidłowy znak decyzji.");
+            System.exit(0);
+        }
     }
 }

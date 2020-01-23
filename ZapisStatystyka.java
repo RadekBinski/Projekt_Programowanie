@@ -1,2 +1,3 @@
 public interface ZapisStatystyka {
+    // zapisStatystyka();
 }

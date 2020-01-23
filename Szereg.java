@@ -15,12 +15,7 @@ public class Szereg implements Dane{
 
     @Override
     public ArrayList getDane() {
-//        ArrayList<Integer> dane = new ArrayList<>();
-//        ArrayList<Punkt> lista = this.szereg;
-//        for (int i = 0; i < lista.size(); i++){
-//            dane.set(i, lista.get(i).getX());
-//        }
-//        return dane;
+
         return this.szereg;
     }
 
