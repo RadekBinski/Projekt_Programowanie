@@ -1,3 +1,3 @@
 public interface ZapisDane {
-    // zapisDane();
+    String zapisDane(Dane a);
 }

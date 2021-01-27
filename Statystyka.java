@@ -45,8 +45,7 @@ public class Statystyka {
             }
         }
         return dominanta;
-        //aktualnie zwracam wartość, która wystąpiła w szeregu najwięcej razy
-        //ale co jeśli dwie, lub więcej wartości wystąpią tak samo często np.: [1,2,1,2,3]?
+
     }
 
     static double srednia(Dane a){

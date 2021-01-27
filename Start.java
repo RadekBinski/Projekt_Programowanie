@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -10,12 +11,11 @@ public class Start {
                 "Wybierz co chcesz zrobić:\n" +
                 "1. Stwórz szereg wybranych punktów.\n" +
                 "2. Stwórz szereg losowych punktów.\n" +
-                "3. Stwórz szereg losowych punktów w wybranym zakresie\n" +
-                "4. Otwórz plik z danymi");
+                "3. Stwórz szereg losowych punktów w wybranym zakresie");
 
         int wyborRodzajuSzeregu = myObj.nextInt();
 
-        if (wyborRodzajuSzeregu < 1 || wyborRodzajuSzeregu > 4){
+        if (wyborRodzajuSzeregu < 1 || wyborRodzajuSzeregu > 3){
             System.out.println("Podano nieprawidłowy numer akcji.");
             System.exit(0);
         }
@@ -60,12 +60,10 @@ public class Start {
                         "Oto wartości tych punktów:");
                 nowySzereg.wypiszWartosciSzeregu();
                 break;
-            case 4:
-                //odczyt danych z pliku
         }
 
         System.out.println("\nNazwij utworzony szereg (jednym wyrazem):");
-        nowySzereg.setNazwaSzeregu(myObj.next()); //napraw żeby nextLine() działało
+        nowySzereg.setNazwaSzeregu(myObj.next());
         System.out.println(nowySzereg.getNazwaSzeregu());
 
         System.out.println("Co chciałbyś zrobić ze swoim szeregiem?\n" +
@@ -73,7 +71,7 @@ public class Start {
                 "2. Dominanta.\n" +
                 "3. Srednia.\n" +
                 "4. Odchylenie standardowe.\n" +
-                "5. Wszystko z powyższych.\n");
+                "5. Wszystko z powyższych.");
 
         int wyborAkcji = myObj.nextInt();
 
@@ -104,7 +102,15 @@ public class Start {
         System.out.println("Czy chcesz zapisać swój szereg? [Y/N]");
         String decyzja = myObj.next();
         if(decyzja.toUpperCase().equals("Y")){
-            //zapis na dysk
+            ZapisNaDysk znd = new ZapisNaDysk();
+            znd.zapisDane(nowySzereg);
+            znd.zapisStatystyka(Statystyka.opisDanych(nowySzereg));
+            try {
+                znd.zapis();
+            } catch (IOException e){
+                System.out.println("Błąd zapisu pliku");
+            }
+            System.exit(0);
         } else if(decyzja.toUpperCase().equals("N")) {
             System.exit(0);
         } else {

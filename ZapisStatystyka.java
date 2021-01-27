@@ -1,3 +1,3 @@
 public interface ZapisStatystyka {
-    // zapisStatystyka();
+    String zapisStatystyka(float[] tabela);
 }
